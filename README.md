@@ -1,9 +1,9 @@
 # Azure Cloud SIEM Implementation & Global Honeypot
 
 ## 📖 Objective
-The Sentinel-Cloud-SIEM-Lab project serves as a hands-on demonstration of Cloud Security Operations. The primary objective was to deploy a globally exposed Windows virtual machine acting as a honeypot, ingest the resulting security telemetry into a centralized log repository, and utilize a Security Information and Event Management (SIEM) system to analyze, parse, and visualize the live cyberattacks occurring from around the world.
+The Azure-Sentinel-Global-Honeypot project serves as a hands-on demonstration of Cloud Security Operations and Blue Teaming concepts. The primary objective was to deploy a globally exposed Windows virtual machine acting as a honeypot, ingest the resulting security telemetry into a centralized log repository, and utilize a Security Information and Event Management (SIEM) system to analyze, parse, and visualize the live cyberattacks occurring from around the world.
 
-This project simulates the foundational responsibilities of a Tier 1 SOC Analyst, emphasizing threat detection, log ingestion pipelines, and proactive monitoring using Microsoft Sentinel.
+This project simulates the foundational responsibilities of a SOC Analyst, emphasizing threat detection, log ingestion pipelines, and proactive monitoring using Microsoft Sentinel.
 
 ## 🛠️ Tools & Technologies Used
 * **Microsoft Azure:** Cloud infrastructure provisioning (Virtual Machines, Resource Groups, Virtual Networks).
@@ -38,7 +38,7 @@ Within hours of deployment, global scanners and botnets discovered the exposed a
 *Ref: Windows Event Viewer capturing sequential Event ID 4625 (Audit Failure) logs.*
 
 ### 3. Log Ingestion & SIEM Integration
-A Log Analytics Workspace was established to centralize the telemetry. Microsoft Sentinel was attached to the workspace, and the Windows Security Events connector was configured to stream all security events to the cloud repository. 
+A Log Analytics Workspace was established to centralize the telemetry. Microsoft Sentinel was attached to the workspace, and the Windows security events connector was configured to stream all security events to the cloud repository. 
 
 ![Log Analytics Workspace](images/3-log-analytics-kql.png)
 *Ref: Querying the `SecurityEvent` table using KQL to verify successful log ingestion.*
@@ -51,5 +51,5 @@ To extract actionable intelligence, a Geo-IP database was uploaded to Sentinel a
 
 ## 📈 Key Findings & Conclusion
 * **Speed of Discovery:** The honeypot was discovered by automated global scanners within minutes of lowering the firewalls, highlighting the aggressive nature of internet-wide scanning.
-* **Primary Attack Vectors:** The vast majority of attacks utilized default or highly predictable administrative usernames (e.g., `admin`, `administrator`, `user`, `root`) confirming that automated brute-force scripts are the primary mechanism for opportunistic RDP compromise.
+* **Primary Attack Vectors:** The vast majority of attacks utilized default or highly predictable administrative usernames (e.g., `admin`, `administrator`, `user`, `root`), confirming that automated brute-force scripts are the primary mechanism for opportunistic RDP compromise.
 * **SOC Application:** This lab reinforces the absolute necessity of strict network access controls (Zero Trust), VPN/Bastion host tunneling for administrative access, and the value of a properly tuned SIEM in identifying and triaging network anomalies.
